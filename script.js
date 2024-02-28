@@ -65,7 +65,7 @@ function check() {
   }
 
   if (selecionado.every((item) => item)) {
-    alert("______________Ichhh Empatou!");
+    alert("______________Ichhh Empatou!______");
     init();
     return;
   }
