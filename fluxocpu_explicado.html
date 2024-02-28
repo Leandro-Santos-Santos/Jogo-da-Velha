@@ -1,0 +1,8 @@
+Esse fluxograma representa o processo de seleção aleatória de um índice vazio no tabuleiro do jogo. Cada passo leva ao próximo até que o índice seja selecionado.
+
+A[Início] -->|Obter comprimento de emptyIndexes| B(Gerar número aleatório entre 0 e 1)
+B --> C{Arredondar para baixo o número aleatório}
+C -->|One| D[Multiplicar o número aleatório por n]
+C -->|Two| E[Arredondar para baixo o resultado]
+C -->|Acessar o elemento na posição resultante em emptyIndexes| F[Selecionar o índice obtido]
+D[Fim]
