@@ -2,18 +2,6 @@ const currentPlayer = document.querySelector(".currentPlayer");
 let selecionado;
 let player = "X";
 
-// exemplo incorreto
-// const posicao = [
-//   [1, 2, 3],
-//   [4, 5, 6],
-//   [7, 8, 9],
-//   [1, 4, 7],
-//   [2, 5, 8],
-//   [3, 6, 9],
-//   [1, 5, 9],
-//   [3, 5, 7],
-// ];
-
 const posicao = [
   [0, 1, 2],
   [3, 4, 5],
@@ -25,11 +13,6 @@ const posicao = [
   [2, 5, 8],
 ];
 
-//ordem de matriz
-// [{0, 1, 2},
-//  {3, 4, 5},
-//  {6, 7, 8}]
-
 function init() {
   selecionado = new Array(9).fill(null);
   currentPlayer.textContent = `JOGADOR DA VEZ: ${player}`;
@@ -38,6 +21,10 @@ function init() {
     item.textContent = "";
     item.addEventListener("click", newMove);
   });
+
+  if (player === "O") {
+    setTimeout(cpuMove, 500); // Chama a função da jogada da CPU após 500ms
+  }
 }
 
 function newMove(e) {
@@ -46,8 +33,31 @@ function newMove(e) {
   e.target.removeEventListener("click", newMove);
   selecionado[index] = player;
 
-  setTimeout(check, 200);
-  
+  check();
+
+  player = player === "X" ? "O" : "X";
+  currentPlayer.textContent = `Jogador 01: ${player}`;
+
+  if (player === "O") {
+    setTimeout(cpuMove, 500); // Chama a função da jogada da CPU após 500ms
+  }
+}
+
+function cpuMove() {
+  const emptyIndexes = selecionado.reduce((acc, val, index) => {
+    if (val === null) acc.push(index);
+    return acc;
+  }, []);
+
+  const randomIndex = emptyIndexes[Math.floor(Math.random() * emptyIndexes.length)];
+  const button = document.querySelector(`[data-posicao="${randomIndex}"]`);
+
+  button.textContent = player;
+  button.removeEventListener("click", newMove);
+  selecionado[randomIndex] = player;
+
+  check();
+
   player = player === "X" ? "O" : "X";
   currentPlayer.textContent = `Jogador 01: ${player}`;
 }
@@ -56,7 +66,6 @@ function check() {
   const playerLastMove = player === "X" ? "O" : "X";
   
   for (const pos of posicao) {
-    console.log("pos: ", pos)
     if (pos.every((item) => selecionado[item] === playerLastMove)) {
       alert(`O JOGADOR '${playerLastMove}' GANHOU!`);
       init();
