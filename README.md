@@ -3,7 +3,7 @@
 Definição: Objetivo: Desenvolver um programa em qualquer linguagem de programação, use a que
 você se sentir mais confortável, que permita aos usuários jogar o clássico jogo da velha.
 
-## Escopo, pré-requisitos e objetivo
+## Escopo, pré-requisitos e objetivo do trabalho/jogo
 ## Trabalho: Jogo da Velha
 
    O programa deve ter um menu principal com as seguintes opções:
