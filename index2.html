@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo da Velha - CPU vs CPU</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background: #cccfc9;
+    }
+    .game button {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      margin: 2px;
+    }
+    .currentPlayer {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Jogo da Velha - CPU vs CPU</h1>
+  <div class="currentPlayer"></div>
+  <div class="game">
+    <button data-posicao="0"></button>
+    <button data-posicao="1"></button>
+    <button data-posicao="2"></button>
+    <br>
+    <button data-posicao="3"></button>
+    <button data-posicao="4"></button>
+    <button data-posicao="5"></button>
+    <br>
+    <button data-posicao="6"></button>
+    <button data-posicao="7"></button>
+    <button data-posicao="8"></button>
+  </div>
+
+  <script>
+    const currentPlayer = document.querySelector(".currentPlayer");
+    let selecionado;
+    let player = "X";
+
+    const posicao = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+    ];
+
+    function init() {
+      selecionado = new Array(9).fill(null);
+      currentPlayer.textContent = `JOGADOR DA VEZ: ${player}`;
+
+      document.querySelectorAll(".game button").forEach((item) => {
+        item.textContent = "";
+      });
+
+      playCPU();
+    }
+
+    function playCPU() {
+      setTimeout(() => {
+        const emptyIndexes = selecionado.reduce((acc, val, index) => {
+          if (val === null) acc.push(index);
+          return acc;
+        }, []);
+
+        const randomIndex = emptyIndexes[Math.floor(Math.random() * emptyIndexes.length)];
+        const button = document.querySelector(`[data-posicao="${randomIndex}"]`);
+
+        button.textContent = player;
+        selecionado[randomIndex] = player;
+
+        check();
+
+        player = player === "X" ? "O" : "X";
+        currentPlayer.textContent = `JOGADOR DA VEZ: ${player}`;
+
+        playCPU();
+      }, 500);
+    }
+
+    function check() {
+      const playerLastMove = player === "X" ? "O" : "X";
+      
+      for (const pos of posicao) {
+        if (pos.every((item) => selecionado[item] === playerLastMove)) {
+          alert(`O JOGADOR '${playerLastMove}' GANHOU!`);
+          init();
+          return;
+        }
+      }
+
+      if (selecionado.every((item) => item)) {
+        alert("______________Ichhh Empatou!______");
+        init();
+        return;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

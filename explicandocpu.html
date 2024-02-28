@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<p><strong>Declaração de Variáveis:</strong></p>
+    <ul>
+        <title>Document</title>
+      <li><code>&lt;currentPlayer&gt;</code>: Referência ao elemento HTML que exibe o jogador da vez.</li>
+      <li><code>&lt;selecionado&gt;</code>: Array que representa o estado atual do tabuleiro.</li>
+      <li><code>&lt;player&gt;</code>: Indica o jogador atual, começando com " X ".</li>
+      <li><code>&lt;posicao&gt;</code>: Matriz que contém todas as possíveis combinações de vitória.</li>
+    </ul>
+    
+    <p><strong>Função <code>&lt;init()&gt;</code>:</strong></p>
+    <ul>
+      <li>Inicializa o estado do jogo, preenchendo <code>selecionado</code> com <code>null</code> e exibindo o jogador da vez.</li>
+      <li>Limpa o conteúdo dos botões do tabuleiro.</li>
+      <li>Chama <code>playCPU()</code> para começar o jogo.</li>
+    </ul>
+    
+    <p><strong>Função <code>&lt;playCPU()&gt;</code>:</strong></p>
+    <ul>
+      <li>Aguarda 500ms antes de fazer uma jogada da CPU.</li>
+      <li>Obtém os índices vazios no tabuleiro.</li>
+      <li>Seleciona um índice aleatório entre os índices vazios.</li>
+      <li>Atualiza o botão com a jogada da CPU.</li>
+      <li>Verifica se houve um vencedor ou empate.</li>
+      <li>Alterna o jogador atual.</li>
+      <li>Chama recursivamente a função <code>playCPU()</code> se o jogo não tiver terminado.</li>
+    </ul>
+    
+    <p><strong>Função <code>&lt;check()&gt;</code>:</strong></p>
+    <ul>
+      <li>Verifica se houve um vencedor ou empate após cada jogada.</li>
+      <li>Percorre todas as combinações de vitória e verifica se o jogador atual ganhou.</li>
+      <li>Se um jogador vencer, exibe um alerta e reinicia o jogo.</li>
+      <li>Se não houver vencedor e todos os espaços estiverem preenchidos, exibe um alerta de empate e reinicia o jogo.</li>
+    </ul>
+    
+    <p><strong>Função <code>&lt;gameOver()&gt;</code>:</strong></p>
+    <ul>
+      <li>Verifica se o jogo terminou.</li>
+      <li>É semelhante à função <code>check()</code>, mas retorna <code>true</code> se o jogo terminou e <code>false</code> caso contrário.</li>
+    </ul>
+    
+    <p><strong>Inicialização do Jogo:</strong></p>
+    <ul>
+      <li>Chama <code>init()</code> para começar o jogo.</li>
+    </ul>
+    
+    <p>Esse código implementa um jogo da velha onde duas CPUs jogam uma contra a outra. Cada CPU faz uma jogada aleatória e o jogo continua até que haja um vencedor ou empate.
+    , initial-scale=1.0"></p>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
