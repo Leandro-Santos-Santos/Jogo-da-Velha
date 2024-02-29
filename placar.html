@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo da Velha - CPU vs CPU com placar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background: #cccfc9;
+    }
+    .game button {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      margin: 2px;
+    }
+    .currentPlayer {
+      font-weight: bold;
+    }
+    .score {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Jogo da Velha - CPU vs CPU</h1>
+  <div class="score">
+    <span class="scoreX">Placar X: 0</span>
+    <span class="scoreO">Placar O: 0</span>
+  </div>
+  <div class="currentPlayer"></div>
+  <div class="game">
+    <button data-posicao="0"></button>
+    <button data-posicao="1"></button>
+    <button data-posicao="2"></button>
+    <br>
+    <button data-posicao="3"></button>
+    <button data-posicao="4"></button>
+    <button data-posicao="5"></button>
+    <br>
+    <button data-posicao="6"></button>
+    <button data-posicao="7"></button>
+    <button data-posicao="8"></button>
+  </div>
+
+  <script>
+    const currentPlayer = document.querySelector(".currentPlayer");
+    const scoreXElement = document.querySelector(".scoreX");
+    const scoreOElement = document.querySelector(".scoreO");
+
+    let selecionado;
+    let player = "X";
+    let scoreX = 0;
+    let scoreO = 0;
+
+    const posicao = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+    ];
+
+    function init() {
+      selecionado = new Array(9).fill(null);
+      currentPlayer.textContent = `JOGADOR DA VEZ: ${player}`;
+      updateScoreDisplay();
+
+      document.querySelectorAll(".game button").forEach((item) => {
+        item.textContent = "";
+      });
+
+      playCPU();
+    }
+
+    function playCPU() {
+      setTimeout(() => {
+        const emptyIndexes = selecionado.reduce((acc, val, index) => {
+          if (val === null) acc.push(index);
+          return acc;
+        }, []);
+
+        const randomIndex = emptyIndexes[Math.floor(Math.random() * emptyIndexes.length)];
+        const button = document.querySelector(`[data-posicao="${randomIndex}"]`);
+
+        button.textContent = player;
+        selecionado[randomIndex] = player;
+
+        check();
+
+        player = player === "X" ? "O" : "X";
+        currentPlayer.textContent = `JOGADOR DA VEZ: ${player}`;
+
+        playCPU();
+      }, 500);
+    }
+
+    function check() {
+      const playerLastMove = player === "X" ? "O" : "X";
+      
+      for (const pos of posicao) {
+        if (pos.every((item) => selecionado[item] === playerLastMove)) {
+          if (playerLastMove === "X") {
+            scoreX++;
+          } else {
+            scoreO++;
+          }
+          updateScoreDisplay();
+          alert(`O JOGADOR '${playerLastMove}' GANHOU!`);
+          init();
+          return;
+        }
+      }
+
+      if (selecionado.every((item) => item)) {
+        alert("______________Ichhh Empatou!______");
+        init();
+        return;
+      }
+    }
+
+    function updateScoreDisplay() {
+      scoreXElement.textContent = `Placar X: ${scoreX}`;
+      scoreOElement.textContent = `Placar O: ${scoreO}`;
+    }
+
+    init();
+  </script>
+</body>
+</html>
