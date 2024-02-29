@@ -1,6 +1,6 @@
 const currentPlayer = document.querySelector(".currentPlayer");
-const scorePlayerX = document.querySelector(".scorePlayerX");
-const scorePlayerO = document.querySelector(".scorePlayerO");
+const placarJogadorX = document.querySelector(".placarJogadorX");
+const placarJogadorO = document.querySelector(".placarJogadorO");
 
 let selecionado;
 let player = "X";
@@ -21,8 +21,8 @@ const posicao = [
 function init() {
   selecionado = new Array(9).fill(null);
   currentPlayer.textContent = `Jogador da Vez: ${player}`;
-  scorePlayerX.textContent = `Jogador 01: ${scoreX}`;
-  scorePlayerO.textContent = `Jogador 02: ${scoreO}`;
+  placarJogadorX.textContent = `Jogador 01: ${scoreX}`;
+  placarJogadorO.textContent = `Jogador 02: ${scoreO}`;
 
   document.querySelectorAll(".game button").forEach((item) => {
     item.textContent = "";
@@ -77,10 +77,10 @@ function check() {
       alert(`O Jogador '${playerLastMove}' GANHOU!`);
       if (playerLastMove === 'X') {
         scoreX++;
-        scorePlayerX.textContent = `Jogador 01: ${scoreX}`;
+        placarJogadorX.textContent = `Jogador 01: ${scoreX}`;
       } else {
         scoreO++;
-        scorePlayerO.textContent = `Jogador 02: ${scoreO}`;
+        placarJogadorO.textContent = `Jogador 02: ${scoreO}`;
       }
       init();
       return;
