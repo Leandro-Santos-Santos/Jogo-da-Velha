@@ -7,29 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentação do Código JavaScript</title>
 
-    <b>
-        <p align="center">
-            <font face="verdana" size="7" color="#1C1C1C">
-                Função automátia da CPU
-            </font>
-        </p>
-    </b>
-    <br />
-
-    <p align="center">
-        <font face="verdana" size="9" color="#dce0d5">
-            Vamos aprender ??!!
-        </font>
-    </p>
-    <p>
-        <center>
-            <img src="./assets/img/fluxoCpu.jpg" width="500" height="600">
-        </center>
-
-    </p>
-
     <style>
-        {
+        body {
             font-family: Arial, sans-serif;
             line-height: 2.5;
             margin: 50px;
@@ -40,37 +19,55 @@
             background-color: #a3bbaa;
             padding: 5px;
         }
+
+        .center {
+            text-align: center;
+        }
+
+        h1,
+        h2,
+        p {
+            color: #1C1C1C;
+            font-family: verdana;
+        }
+
+        img {
+            width: 500px;
+            height: 600px;
+            display: block;
+            margin: 0 auto;
+        }
     </style>
+</head>
 
-
-    <i>
+<body>
+    <div class="center">
         <h1>Documentação do Código JavaScript</h1>
-        </p>
+        <p>***| UTILIZADO EXEMPLOS WEB DE DOCUMENTAÇÃO |***</p>
+    </div>
 
-        <b>***|UTLIZADO EXEMPLOS WEB DE DOCUMENTAÇÃO|***</b>
+    <h2>Introdução</h2>
+    <p>Esse fluxograma representa o processo de seleção aleatória de um índice vazio no tabuleiro do jogo. Cada
+        passo leva ao próximo até que o índice seja selecionado. O código implementa um jogo da velha - TRABALHO SENAC
+        TECH RS - em uma página da web.</p>
 
+    <h2>Variáveis tratamento randômico</h2>
+    <ul>
+        <li><code>currentPlayer</code>: Uma referência ao elemento HTML que exibe qual jogador deve fazer o próximo
+            movimento.</li>
+        <li><b>Início</b>: Obter comprimento de emptyIndexes</li>
+        <li><b>B</b>: Gerar número aleatório entre 0 e 1</li>
+        <li><b>C</b>: Arredondar para baixo o número aleatório</li>
+        <li><b>D</b>: Multiplicar o número aleatório por n</li>
+        <li><b>E</b>: Arredondar para baixo o resultado</li>
+        <li><b>F</b>: Selecionar o índice obtido</li>
+        <li><b>G</b>: Acessar o elemento na posição resultante em emptyIndexes</li>
+        <li><b>Fim</b></li>
+    </ul>
 
-        <h2 style="font-size: 24px;">Introdução</h2>
-        <p style="font-size: 18px;">Essefluxograma representa o processo de seleção aleatória de um índice vazio no
-            tabuleiro do jogo. Cada
-            passo leva ao próximo até que o índice seja selecionado. O código implementa um jogo da velha - TRABALHO
-            SENAC TECH RS - em uma página da web.</p>
-
-        <h2>Variáveis tratamento randomico</h2>
-        <ul>
-            <li><code>currentPlayer</code>: Uma referência ao elemento HTML que exibe qual jogador deve fazer o próximo
-                movimento.</li>
-
-            <li> A [Início] Obter comprimento de emptyIndexes </li>
-            <li> B - Gerar número aleatório entre 0 e 1 </li>
-            <li> C - Arredondar para baixo o número aleatório </li>
-            <li> D - [Multiplicar o número aleatório por n]</li>
-            <li> E - [Arredondar para baixo o resultado]</li>
-            <li> F - [Selecionar o índice obtido] </li>
-            <li> G - [Acessar o elemento na posição resultante em emptyIndexes] </li>
-            <li> [Fim]</li>
-        </ul>
-
-        </body>
+    <div class="center">
+        <img src="./assets/img/fluxoCpu.jpg" alt="Fluxo de CPU">
+    </div>
+</body>
 
 </html>
