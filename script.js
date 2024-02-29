@@ -1,6 +1,11 @@
 const currentPlayer = document.querySelector(".currentPlayer");
+const scorePlayerX = document.querySelector(".scorePlayerX");
+const scorePlayerO = document.querySelector(".scorePlayerO");
+
 let selecionado;
 let player = "X";
+let scoreX = 0;
+let scoreO = 0;
 
 const posicao = [
   [0, 1, 2],
@@ -15,7 +20,9 @@ const posicao = [
 
 function init() {
   selecionado = new Array(9).fill(null);
-  currentPlayer.textContent = `JOGADOR DA VEZ: ${player}`;
+  currentPlayer.textContent = `Jogador da Vez: ${player}`;
+  scorePlayerX.textContent = `Jogador 01: ${scoreX}`;
+  scorePlayerO.textContent = `Jogador 02: ${scoreO}`;
 
   document.querySelectorAll(".game button").forEach((item) => {
     item.textContent = "";
@@ -36,7 +43,7 @@ function newMove(e) {
   check();
 
   player = player === "X" ? "O" : "X";
-  currentPlayer.textContent = `Jogador 01: ${player}`;
+  currentPlayer.textContent = `Jogador da Vez: ${player}`;
 
   if (player === "O") {
     setTimeout(cpuMove, 500); // Chama a função da jogada da CPU após 500ms
@@ -59,7 +66,7 @@ function cpuMove() {
   check();
 
   player = player === "X" ? "O" : "X";
-  currentPlayer.textContent = `Jogador 01: ${player}`;
+  currentPlayer.textContent = `Jogador da Vez: ${player}`;
 }
 
 function check() {
@@ -67,7 +74,14 @@ function check() {
   
   for (const pos of posicao) {
     if (pos.every((item) => selecionado[item] === playerLastMove)) {
-      alert(`O JOGADOR '${playerLastMove}' GANHOU!`);
+      alert(`O Jogador '${playerLastMove}' GANHOU!`);
+      if (playerLastMove === 'X') {
+        scoreX++;
+        scorePlayerX.textContent = `Jogador 01: ${scoreX}`;
+      } else {
+        scoreO++;
+        scorePlayerO.textContent = `Jogador 02: ${scoreO}`;
+      }
       init();
       return;
     }
